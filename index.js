@@ -27,3 +27,18 @@ const walls = [
 ];
 
 World.add(world, walls);
+
+// Maze generation
+
+/**  
+[
+	[1, 2, 3],  
+	[4, 5, 6],
+	[7, 8, 9]
+]
+
+**/
+// const gridBad = Array(3).fill([ false, false, false ]);
+const grid = Array(3).fill(null).map(() => Array(3).fill(false));
+
+console.log(gridBad);
