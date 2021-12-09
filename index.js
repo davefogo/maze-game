@@ -32,32 +32,16 @@ World.add(world, walls);
 // Maze generation
 
 const shuffle = arr => {
-	//* ['a', 'b', 'c', 'd']
 	let counter = arr.length;
 	while (counter > 0) {
-		//* 4 (['a', 'b', 'c', 'd'])
-		//** 3 (['a', 'b', 'd', 'c'])
 		const index = Math.floor(Math.random() * counter);
-		//* index = Math.floor(0.5 * 4) = 2
-		//* index = Math.floor(0.7 * 3) = 2
 		counter--;
-		//* 3
-		//** 2
 		const temp = arr[counter];
-		//* temp = arr[3] => 'd'
-		//* * temp = arr[2]=> 'd'
 		arr[counter] = arr[index];
-		//* arr[3] ('d') becomes = arr[2] ('c') => ['a', 'b', 'c', 'c']
-		//* * arr[2] ('d') becomes = arr[2] ('c') => ['a', 'b', 'd', 'c']
 		arr[index] = temp;
-		//*arr[0] = arr[1]
-		//* arr[2] ('c') becomes = temp ('d') => ['a', 'b', 'd', 'c']
-		//* * arr[2] ('d') becomes = temp ('d')
 	}
 
 	return arr;
-	//* []['a', 'b', 'd', 'c']
-	//** ['a', 'b', 'd', 'c']
 };
 
 /**  
@@ -86,22 +70,26 @@ const stepThroughCell = (row, column) => {
 	//Assemble randomly-ordered list of neighbors
 	// prettier-ignore
 	const neighbors = shuffle([
-		[row - 1, column],
-		[row, column + 1],
-		[row + 1, column],
-		[row, column - 1]
+		[row - 1, column, 'up'],
+		[row, column + 1, 'right'],
+		[row + 1, column, 'down'],
+		[row, column - 1, 'left']
 	]);
-	console.log(neighbors);
 	//For each neighbor...
-
+	for (let neighbor of neighbors) {
+		const [nextRow, nextColumn, direction] = neighbor;
 	//See if that neighbor is out of bounds
-
+	if (nextRow < 0 || nextRow >= cells || nextColumn < 0 || nextColumn >= cells) {
+		continue;		
+	}
 	//If we have visited that neighbor, continue to next neighbor
-
+	if (grid[nextRow][nextColumn]) {
+		continue;
+	}
 	//remove wall from horizontals or verticals array
+
+	}
 
 	// visit that next cell
 };
 
-stepThroughCell(1, 1);
-console.log(grid);
