@@ -1,8 +1,8 @@
 const { Engine, Render, Runner, World, Bodies, Body, Events } = Matter;
 
 const cells = 6;
-const width = 600;
-const height = 600;
+const width = window.innerWidth;
+const height = window.innerHeight;
 
 const unitLength = width / cells;
 
@@ -22,7 +22,6 @@ Render.run(render);
 Runner.run(Runner.create(), engine);
 
 //Walls
-
 const walls = [
 	Bodies.rectangle(width / 2, 0, width, 2, { isStatic: true }),
 	Bodies.rectangle(width / 2, height, width, 2, { isStatic: true }),
